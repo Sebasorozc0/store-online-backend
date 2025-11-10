@@ -150,7 +150,7 @@ app.post('/api/products/:id/upload', upload.single('productImage'), async (req, 
     try {
         const productId = req.params.id;
         if (!req.file) return res.status(400).json({ error: 'No se recibió archivo' });
-        const imageUrl = `http://localhost:4000/uploads/${req.file.filename}`;
+        const imageUrl = `https://store-online-sa-backend.onrender.com/uploads/${req.file.filename}`;
         await pool.query('UPDATE Products SET image_url = ? WHERE product_id = ?', [imageUrl, productId]);
         res.json({ message: 'Imagen subida', imageUrl: imageUrl });
     } catch (error) { res.status(500).json({ error: 'Error al subir imagen' }); }
